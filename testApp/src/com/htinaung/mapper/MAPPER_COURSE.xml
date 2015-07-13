@@ -1,0 +1,27 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.htinaung.mapper.MAPPER_COURSE">
+	<sql id="COLUMNS">
+		SELECT  COURSE_NO AS courseNumber,
+				COURSE_NAME AS courseName,
+				COURSE_DATE AS courseDate,
+				TIME_OF_OPEN AS timeOfOpen,
+				TIME_OF_END AS timeOfEnd,
+				CAPACITY AS capacity
+	</sql>
+	
+	<sql id="TABLE">
+		FROM COURSE
+	</sql>
+	
+	<select id="SELECT_ALL" resultType="course">
+		<include refid="COLUMNS"/>
+		<include refid="TABLE"/>
+	</select>
+	
+	<insert id="INSERT" parameterType="course">
+		INSERT INTO COURSE (COURSE_NO,COURSE_NAME,COURSE_DATE,START_TIME,END_TIME,CAPACITY,CREATE_DATE,UPDATE_DATE)
+					VALUES (#{courseNumber},#{courseName},#{courseDate},#{timeOfOpen},#{timeOfEnd},#{capicity},now(),now())
+	</insert>
+</mapper>
